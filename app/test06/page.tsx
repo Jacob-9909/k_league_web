@@ -1,16 +1,32 @@
-'use client'
 import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Newspaper, Users, MessageSquare, Gift, ExternalLink } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import React from 'react'
 
 const news = [
-  { title: "K리그1 중간 순위 분석", content: "현재 리그 순위와 각 팀의 성적 추이를 분석합니다.", date: "2023-06-15" },
-  { title: "이번 주 주목할 경기", content: "이번 주말 열릴 주요 경기와 관전 포인트를 소개합니다.", date: "2023-06-14" },
-  { title: "K리그 영플레이어 특집", content: "올 시즌 주목받는 젊은 선수들의 활약상을 정리했습니다.", date: "2023-06-13" },
+  { 
+    title: "울산, '완벽한 승리' 전북 2-0 제압…선두 굳건", 
+    content: "울산 현대가 라이벌 전북 현대를 완벽하게 제압하며 선두 자리를 더욱 굳건히 했다.", 
+    date: "2023-06-15", 
+    author: "김기범 기자", 
+    url: "https://sports.news.naver.com/news.nhn?oid=413&aid=0000155555"
+  },
+  { 
+    title: "대구FC, 김진혁 감독 선임…'새 출발' 선언", 
+    content: "대구FC가 김진혁 감독을 새 사령탑으로 선임하며 새로운 출발을 선언했다.", 
+    date: "2023-06-14", 
+    author: "박상현 기자", 
+    url: "https://sports.news.naver.com/news.nhn?oid=413&aid=0000155554"
+  },
+  { 
+    title: "FC서울, 기성용 복귀 임박…'중원 강화' 기대", 
+    content: "FC서울의 중원을 책임졌던 기성용의 복귀가 임박해 팬들의 기대감이 높아지고 있다.", 
+    date: "2023-06-13", 
+    author: "이승우 기자", 
+    url: "https://sports.news.naver.com/news.nhn?oid=413&aid=0000155553"
+  },
 ]
 
 const columns = [
@@ -20,9 +36,9 @@ const columns = [
 ]
 
 const discussions = [
-  { title: "이번 주 울산 vs 전북 경기, 누가 이길까요?", replies: 28, views: 342 },
-  { title: "우리 팀의 승률 예측 모델이 정확한가요?", replies: 15, views: 203 },
-  { title: "데이터 분석으로 본 우리 팀의 약점", replies: 22, views: 287 },
+  { title: "이번 주 울산 vs 전북 경기, 누가 이길까요?", replies: 28, views: 342, author: "축구팬1" },
+  { title: "우리 팀의 승률 예측 모델이 정확한가요?", replies: 15, views: 203, author: "데이터분석가" },
+  { title: "데이터 분석으로 본 우리 팀의 약점", replies: 22, views: 287, author: "전술통" },
 ]
 
 const events = [
@@ -32,104 +48,113 @@ const events = [
 
 export default function CommunityPage() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <header className="px-4 lg:px-6 h-14 flex items-center">
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-blue-100 to-white">
+      <header className="px-4 lg:px-6 h-16 flex items-center shadow-md bg-white">
         <Link className="flex items-center justify-center" href="/">
           <ArrowLeft className="mr-2 h-4 w-4" />
-          <span>Back to Home</span>
+          <span className="font-medium">Back to Home</span>
         </Link>
       </header>
-      <main className="flex-1">
-        <div className="container mx-auto px-4 py-8">
-          <h1 className="text-3xl font-bold mb-8">커뮤니티</h1>
-          
-          <Tabs defaultValue="news" className="w-full">
-            <TabsList>
-              <TabsTrigger value="news">뉴스</TabsTrigger>
-              <TabsTrigger value="columns">컬럼 & 전문가 분석</TabsTrigger>
-              <TabsTrigger value="discussions">토론</TabsTrigger>
-              <TabsTrigger value="events">이벤트</TabsTrigger>
-            </TabsList>
-            <TabsContent value="news">
-              <section className="mb-12">
-                <h2 className="text-2xl font-semibold mb-4">최신 뉴스</h2>
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                  {news.map((item) => (
-                    <Card key={item.title}>
-                      <CardHeader>
-                        <CardTitle>{item.title}</CardTitle>
-                        <CardDescription>{item.date}</CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <p>{item.content}</p>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </section>
-            </TabsContent>
-            <TabsContent value="columns">
-              <section className="mb-12">
-                <h2 className="text-2xl font-semibold mb-4">컬럼 & 전문가 분석</h2>
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                  {columns.map((column) => (
-                    <Card key={column.title}>
-                      <CardHeader>
-                        <CardTitle>{column.title}</CardTitle>
-                        <CardDescription>by {column.author}</CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <p>{column.content}</p>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </section>
-            </TabsContent>
-            <TabsContent value="discussions">
-              <section className="mb-12">
-                <h2 className="text-2xl font-semibold mb-4">승률 예측 모델 토론</h2>
-                <div className="space-y-4">
-                  {discussions.map((discussion) => (
-                    <Card key={discussion.title}>
-                      <CardHeader>
-                        <CardTitle>{discussion.title}</CardTitle>
-                        <CardDescription>댓글 {discussion.replies} | 조회수 {discussion.views}</CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <Button>토론 참여하기</Button>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </section>
-            </TabsContent>
-            <TabsContent value="events">
-              <section className="mb-12">
-                <h2 className="text-2xl font-semibold mb-4">후원 기업과의 협업 이벤트</h2>
-                <div className="grid gap-6 md:grid-cols-2">
-                  {events.map((event) => (
-                    <Card key={event.title}>
-                      <CardHeader>
-                        <CardTitle>{event.title}</CardTitle>
-                        <CardDescription>후원: {event.sponsor}</CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <p>{event.content}</p>
-                        <Button className="mt-4">자세히 보기</Button>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </section>
-            </TabsContent>
-          </Tabs>
-        </div>
+      <main className="flex-1 container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-8 text-blue-600">커뮤니티</h1>
+        
+        <Tabs defaultValue="news" className="w-full">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 mb-8">
+            <TabsTrigger value="news" className="flex items-center"><Newspaper className="w-4 h-4 mr-2" /> 뉴스</TabsTrigger>
+            <TabsTrigger value="columns" className="flex items-center"><Users className="w-4 h-4 mr-2" /> 컬럼 & 전문가 분석</TabsTrigger>
+            <TabsTrigger value="discussions" className="flex items-center"><MessageSquare className="w-4 h-4 mr-2" /> 토론</TabsTrigger>
+            <TabsTrigger value="events" className="flex items-center"><Gift className="w-4 h-4 mr-2" /> 이벤트</TabsTrigger>
+          </TabsList>
+          <TabsContent value="news">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {news.map((item, index) => (
+                <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+                  <CardHeader>
+                    <CardTitle>
+                      <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-blue-600">
+                        {item.title}
+                        <ExternalLink className="w-4 h-4 ml-2" />
+                      </a>
+                    </CardTitle>
+                    <CardDescription>{item.date}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="mb-4">{item.content}</p>
+                    <div className="flex items-center">
+                      <Avatar className="h-8 w-8 mr-2">
+                        <AvatarImage src={`/placeholder.svg?text=${item.author[0]}`} alt={item.author} />
+                        <AvatarFallback>{item.author[0]}</AvatarFallback>
+                      </Avatar>
+                      <span className="text-sm text-gray-500">{item.author}</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+          <TabsContent value="columns">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {columns.map((column, index) => (
+                <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+                  <CardHeader>
+                    <CardTitle>{column.title}</CardTitle>
+                    <CardDescription>by {column.author}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p>{column.content}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+          <TabsContent value="discussions">
+            <div className="space-y-4">
+              {discussions.map((discussion, index) => (
+                <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+                  <CardHeader>
+                    <CardTitle>{discussion.title}</CardTitle>
+                    <CardDescription>
+                      <div className="flex items-center justify-between">
+                        <span>댓글 {discussion.replies} | 조회수 {discussion.views}</span>
+                        <span>by {discussion.author}</span>
+                      </div>
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Button>토론 참여하기</Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+          <TabsContent value="events">
+            <div className="grid gap-6 md:grid-cols-2">
+              {events.map((event, index) => (
+                <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+                  <CardHeader>
+                    <CardTitle>{event.title}</CardTitle>
+                    <CardDescription>후원: {event.sponsor}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="mb-4">{event.content}</p>
+                    <Button>자세히 보기</Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+        </Tabs>
       </main>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-gray-500 dark:text-gray-400">
-          © 2023 K-League Analysis Project. All rights reserved.
-        </p>
+      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t bg-white">
+        <p className="text-xs text-gray-500 dark:text-gray-400">© 2023 K-League Analysis Project. All rights reserved.</p>
+        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+          <Link className="text-xs hover:underline underline-offset-4 text-gray-500 hover:text-gray-700" href="#">
+            Terms of Service
+          </Link>
+          <Link className="text-xs hover:underline underline-offset-4 text-gray-500 hover:text-gray-700" href="#">
+            Privacy
+          </Link>
+        </nav>
       </footer>
     </div>
   )
