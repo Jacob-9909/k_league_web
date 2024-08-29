@@ -187,7 +187,7 @@ export default function TeamPlayerPage() {
           className="mb-8 w-full p-2 border border-gray-300 rounded-md"
         />
 
-        {searchQuery ? (
+{searchQuery ? (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filteredPlayers.length > 0 ? (
               filteredPlayers.map((player, index) => (
@@ -247,32 +247,36 @@ export default function TeamPlayerPage() {
                             <img src={player.사진} alt={`${player.성명} 사진`} className="w-8 h-8 mr-2" />
                           ) : (
                             <div className="w-8 h-8 mr-2 bg-gray-200"></div> // 사진이 없을 경우
-                            )}
-                            {player.성명}
-                          </CardTitle>
-                          </CardHeader>
-                          <CardContent>
-                          <CardDescription>등번: {player.등번}</CardDescription>
-                          <CardDescription>포지션: {player.포지션}</CardDescription>
-                          <CardDescription>키: {player.키}</CardDescription>
-                          <CardDescription>몸무게: {player.몸무게}</CardDescription>
-                          <CardDescription>생년월일: {player.생년월일}</CardDescription>
-                          </CardContent>
-                        </Card>
-                        ))}
-                      </div>
-                    </div>
-                    )
+                          )}
+                          {player.성명}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <CardDescription>등번: {player.등번}</CardDescription>
+                        <CardDescription>포지션: {player.포지션}</CardDescription>
+                        <CardDescription>키: {player.키}</CardDescription>
+                        <CardDescription>몸무게: {player.몸무게}</CardDescription>
+                        <CardDescription>생년월일: {player.생년월일}</CardDescription>
+                      </CardContent>
+                    </Card>
                   ))}
-                  </main>
-                  <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t bg-white">
-                  <p className="text-xs text-gray-500 dark:text-gray-400">© 2023 K-League Analysis Project. All rights reserved.</p>
-                  <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-                    <Link className="text-xs hover:underline underline-offset-4 text-gray-500 hover:text-gray-700" href="#"> Terms of Service </Link>
-                    <Link className="text-xs hover:underline underline-offset-4 text-gray-500 hover:text-gray-700" href="#"> Privacy </Link>
-                  </nav>
-                  </footer>
-                </div>
-                )
-              }
+              </div>
+            </div>
+          )
+        ))}
+      </main>
+      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t bg-white">
+        <p className="text-xs text-gray-500 dark:text-gray-400">© 2023 K-League Analysis Project. All rights reserved.</p>
+        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+          <Link className="text-xs hover:underline underline-offset-4 text-gray-500 hover:text-gray-700" href="#">
+            Terms of Service
+          </Link>
+          <Link className="text-xs hover:underline underline-offset-4 text-gray-500 hover:text-gray-700" href="#">
+            Privacy
+          </Link>
+        </nav>
+      </footer>
+    </div>
+  )
+}
 

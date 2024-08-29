@@ -23,7 +23,7 @@ export default function HomePage() {
           <span className="sr-only">Toggle Menu</span>
         </button>
         <nav className={`${isMenuOpen ? 'flex' : 'hidden'} lg:flex lg:ml-auto lg:mr-4 gap-4 sm:gap-6 absolute lg:relative top-16 lg:top-0 left-0 right-0 bg-white lg:bg-transparent shadow-md lg:shadow-none flex-col lg:flex-row items-center py-4 lg:py-0`}>
-          <Link className="text-sm font-medium hover:text-blue-600 transition-colors" href="/test04">
+          <Link className="text-sm font-medium hover:text-blue-600 transition-colors" href="/matches">
             경기 결과 분석
           </Link>
           <Link className="text-sm font-medium hover:text-blue-600 transition-colors" href="/team">
