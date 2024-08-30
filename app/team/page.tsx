@@ -187,20 +187,22 @@ export default function TeamPlayerPage() {
           className="mb-8 w-full p-2 border border-gray-300 rounded-md"
         />
 
-{searchQuery ? (
+        {searchQuery ? (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filteredPlayers.length > 0 ? (
               filteredPlayers.map((player, index) => (
                 <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
-                  <CardHeader>
-                    <CardTitle className="flex items-center">
-                      {player.사진 ? (
-                        <img src={player.사진} alt={`${player.성명} 사진`} className="w-8 h-8 mr-2" />
-                      ) : (
-                        <div className="w-8 h-8 mr-2 bg-gray-200"></div> // 사진이 없을 경우
-                      )}
-                      {player.성명}
-                    </CardTitle>
+                  <CardHeader className="flex flex-col items-center">
+                    {player.등번 && player.성명 ? (
+                      <img 
+                        src={`/images/players/${player.등번}. ${player.성명}.jpg`} 
+                        alt={`${player.성명} 사진`} 
+                        className="w-48 h-48 mb-2" // 이미지 크기 확대
+                      />
+                    ) : (
+                      <div className="w-24 h-24 mb-2 bg-gray-200"></div> // 사진이 없을 경우
+                    )}
+                    <h3 className="text-lg font-semibold">{player.성명}</h3> {/* 성명 사진 아래에 표시 */}
                   </CardHeader>
                   <CardContent>
                     <CardDescription>소속 클럽: {player.소속클럽}</CardDescription>
@@ -241,15 +243,17 @@ export default function TeamPlayerPage() {
                   .filter(player => player.소속클럽 === team.name)
                   .map((player, index) => (
                     <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
-                      <CardHeader>
-                        <CardTitle className="flex items-center">
-                          {player.사진 ? (
-                            <img src={player.사진} alt={`${player.성명} 사진`} className="w-8 h-8 mr-2" />
-                          ) : (
-                            <div className="w-8 h-8 mr-2 bg-gray-200"></div> // 사진이 없을 경우
-                          )}
-                          {player.성명}
-                        </CardTitle>
+                      <CardHeader className="flex flex-col items-center">
+                        {player.등번 && player.성명 ? (
+                          <img 
+                            src={`/images/players/${player.등번}. ${player.성명}.jpg`} 
+                            alt={`${player.성명} 사진`} 
+                            className="w-48 h-48 mb-2" // 이미지 크기 확대
+                          />
+                        ) : (
+                          <div className="w-24 h-24 mb-2 bg-gray-200"></div> // 사진이 없을 경우
+                        )}
+                        <h3 className="text-lg font-semibold">{player.성명}</h3> {/* 성명 사진 아래에 표시 */}
                       </CardHeader>
                       <CardContent>
                         <CardDescription>등번: {player.등번}</CardDescription>
@@ -279,4 +283,3 @@ export default function TeamPlayerPage() {
     </div>
   )
 }
-

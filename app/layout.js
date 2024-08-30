@@ -19,6 +19,9 @@ const fontBody = Inter({
 export default function Layout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <title>K-League Analysis</title>
+      </head>
       <body 
         className={cn(
           'antialiased',
